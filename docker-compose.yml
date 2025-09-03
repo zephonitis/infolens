@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  wexa-coworker-ui:
+    build: .
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_API_BASE_URL=http://coworker-api:8000/api
+    depends_on:
+      - coworker-api
+    networks:
+      - wexa-network
+
+  # Placeholder for Wexa Co-worker API service
+  # Replace with your actual API service configuration
+  coworker-api:
+    image: wexa-coworker-api:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@postgres:5432/wexa
+      - QDRANT_URL=http://qdrant:6333
+    depends_on:
+      - postgres
+      - qdrant
+    networks:
+      - wexa-network
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=wexa
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - wexa-network
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    networks:
+      - wexa-network
+
+networks:
+  wexa-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  qdrant_data:

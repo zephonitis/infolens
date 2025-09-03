@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apply Times New Roman font globally */
+* {
+  font-family: "Times New Roman", Times, serif !important;
+}
+
+@layer base {
+  :root {
+    --background: 60 15% 95%;
+    --foreground: 60 30% 15%;
+    --card: 60 20% 98%;
+    --card-foreground: 60 30% 15%;
+    --popover: 60 20% 98%;
+    --popover-foreground: 60 30% 15%;
+    --primary: 60 25% 45%;
+    --primary-foreground: 60 15% 95%;
+    --secondary: 60 10% 90%;
+    --secondary-foreground: 60 30% 15%;
+    --muted: 60 8% 88%;
+    --muted-foreground: 60 15% 50%;
+    --accent: 60 12% 85%;
+    --accent-foreground: 60 30% 15%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 60 8% 82%;
+    --input: 60 8% 82%;
+    --ring: 60 25% 45%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 60 15% 8%;
+    --foreground: 60 15% 92%;
+    --card: 60 15% 10%;
+    --card-foreground: 60 15% 92%;
+    --popover: 60 15% 10%;
+    --popover-foreground: 60 15% 92%;
+    --primary: 60 20% 70%;
+    --primary-foreground: 60 15% 8%;
+    --secondary: 60 10% 15%;
+    --secondary-foreground: 60 15% 92%;
+    --muted: 60 8% 18%;
+    --muted-foreground: 60 10% 65%;
+    --accent: 60 10% 20%;
+    --accent-foreground: 60 15% 92%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 60 8% 22%;
+    --input: 60 8% 22%;
+    --ring: 60 20% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar styles */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground)) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted-foreground));
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--foreground));
+}
